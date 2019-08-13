@@ -20,20 +20,21 @@
             </div>
 			<div class="navbar-collapse collapse">
 				@if (this.User != null && this.User.Identity.IsAuthenticated) {
-				<ul class="nav navbar-nav">
-					<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-					<li><a asp-area="" asp-controller="Documents" asp-action="Archive">Documents</a></li>
-					<li><a asp-area="" asp-controller="Dropbox" asp-action="Archive">Dropbox</a></li>
-					<li><a asp-area="" asp-controller="eBox" asp-action="Settings">eBox</a></li>
-					<li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
-					<li><a asp-area="" asp-controller="Account" asp-action="Profile"></a></li>
-				</ul>
+					<ul class="nav navbar-nav">
+						<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+						<li><a asp-area="" asp-controller="Documents" asp-action="Archive">Documents</a></li>
+						<li><a asp-area="" asp-controller="Dropbox" asp-action="Archive">Dropbox</a></li>
+						<li><a asp-area="" asp-controller="eBox" asp-action="Settings">eBox</a></li>
+						<li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+						<li><a asp-area="" asp-controller="Account" asp-action="Profile"></a></li>
+					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="javascript:void(0);">@this.User.Identity.Name</a></li>
 					</ul>
 				} else {
 					<ul class="nav navbar-nav">
 						<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+						<li><a asp-area="" asp-controller="Customers" asp-action="List">Customers</a></li>
 						<li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
 					</ul>
 				}
