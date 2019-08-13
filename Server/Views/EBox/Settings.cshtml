@@ -1,0 +1,12 @@
+﻿@model EBoxSettings
+@{
+	ViewData["Title"] = "eBox Settings";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model.IsLinked) {
+	<a class="btn btn-default" asp-area="" asp-controller="EBox" asp-action="Unlink">Unlink</a>
+} else {
+	<a class="btn btn-default" asp-area="" asp-controller="EBox" asp-action="Link">Link</a>
+}
