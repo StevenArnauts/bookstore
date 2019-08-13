@@ -1,0 +1,33 @@
+﻿@using Bookstore.Entities
+@model Customer
+
+@{
+	ViewData["Title"] = "Customer " + Model.Name;
+}
+<h2>@ViewData["Title"]</h2>
+
+<h3>Orders</h3>
+<table class="table">
+	<tr>
+		<th>Id</th>
+		<th>Date</th>
+		<th>Amount</th>
+	</tr>
+	@foreach (var order in Model.Orders) {
+		<tr>
+			<td>@order.Id</td>
+			<td>@order.Date.ToString("dd/MM/yyyy")</td>
+			<td>@order.Amount</td>
+		</tr>
+	}
+</table>
+
+@{ 
+	IDictionary<string, string> parms = new Dictionary<string, string> {
+		{ "id", Model.Id }
+	};
+}
+
+<form asp-controller="Customers" asp-action="Remove" asp-all-route-data="@parms">
+	<button class="btn btn-danger" type="submit">Delete</button>
+</form>

@@ -15,8 +15,8 @@ namespace Bookstore.Entities {
 		}
 
 		public void Run() {
-			var kbc = this._customers.Add("kbc", "KBC");
-			var telenet = this._customers.Add("telenet", "Telenet");
+			var kbc = this._customers.Add("KBC", "kbc");
+			var telenet = this._customers.Add("Telenet");
 			Logger.Info(this, "Seeded");
 		}
 

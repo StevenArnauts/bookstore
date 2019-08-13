@@ -1,31 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using Utilities.Extensions;
 
 namespace Bookstore.Entities {
 
-	public class OrderRepository : IRepository {
+	/// <summary>
+	/// TODO: make this a bit generic (or could be an exercise??)
+	/// </summary>
+	public class OrderRepository : BaseRepository<Order> {
 
-		private readonly List<Order> _orders = new List<Order>();
-
-		public Order Add(string id, string description, DateTime date, decimal amount) {
-			if (this._orders.Any(a => a.Id == id)) {
-				throw new Exception("Order " + description + " already exists");
-			}
-			Order entity = new Order { Id = id, Description = description, Date = date, Amount = amount };
-			this._orders.Add(entity);
+		public Order Add(Customer customer, string description, DateTime date, decimal amount, string id = null) {
+			string i = id?? Guid.NewGuid().ToString("N").ToUpper();
+			string number = (this.Items.Count() + 1).ToString("D6");
+			Order entity = new Order { Id = i, Description = description, Date = date, Amount = amount, Number = number };
+			this.Add(entity);
+			entity.Customer = customer;
+			customer.Orders.Add(entity);
 			return entity;
-		}
-
-		public IEnumerable<Order> Senders {
-			get {
-				return this._orders.AsReadOnly();
-			}
-		}
-
-		public Order GetById(string id) {
-			return this._orders.Get(u => u.Id == id);
 		}
 
 	}
