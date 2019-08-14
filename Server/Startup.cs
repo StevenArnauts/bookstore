@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
 using Utilities.Logging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Bookstore {
 
@@ -54,10 +55,10 @@ namespace Bookstore {
 				options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 			})
 			.AddCookie()
-			.AddOpenIdConnect("dora", options => {
+			.AddOpenIdConnect("bsid", options => {
 				// options.Authority = "http://" + host.Host + ":6003";
 				options.Authority = "https://" + host.Host + ":6103";
-				options.ClientId = "bookstore";
+				options.ClientId = "bookstore.orders";
 				options.ClientSecret = "secret";
 				options.ResponseType = "code";
 
@@ -70,9 +71,11 @@ namespace Bookstore {
 				options.SignedOutRedirectUri = "/signedout";
 				options.CallbackPath = new PathString("/callback");
 
-				options.ClaimsIssuer = "dora";
+				options.ClaimsIssuer = "bsid";
 				options.RequireHttpsMetadata = false;
 				options.ClaimActions.Clear();
+
+				options.ClaimActions.MapUniqueJsonKey("name", "name");
 
 				options.GetClaimsFromUserInfoEndpoint = true;
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Bookstore.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Bookstore.Controllers {
 
@@ -7,7 +8,6 @@ namespace Bookstore.Controllers {
 
 		private readonly CustomerRepository _customers;
 
-		// [Authorize(AuthenticationSchemes = "dora")]
 		public CustomersController(CustomerRepository customers) {
 			this._customers = customers;
 		}
@@ -17,6 +17,7 @@ namespace Bookstore.Controllers {
 			return this.View(this._customers.Items);
 		}
 
+		[Authorize(AuthenticationSchemes = "bsid")]
 		[HttpGet]
 		public IActionResult New() {
 			return this.View();

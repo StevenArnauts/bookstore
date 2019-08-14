@@ -20,7 +20,7 @@ namespace Bookstore.Identity {
 					ClientSecrets = new List<Secret> {
 						new Secret("secret".Sha256())
 					},
-					RequirePkce = true,
+					RequirePkce = false,
 					AllowAccessTokensViaBrowser = true,
 					AllowedCorsOrigins = new List<string> {
 						baseUrl + ":6001",
@@ -41,7 +41,8 @@ namespace Bookstore.Identity {
 						baseUrls + ":6101/callback"
 					},
 					PostLogoutRedirectUris = new List<string> {
-						baseUrl + ":6001"
+						baseUrl + ":6001",
+						baseUrls + ":6101"
 					}
 				}
 			};
