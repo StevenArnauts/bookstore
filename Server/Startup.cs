@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Common;
 using Bookstore.Entities;
-using IdentityModel;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -18,6 +17,7 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
 using Utilities.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bookstore {
 
@@ -45,6 +45,8 @@ namespace Bookstore {
 			});
 
 			HostConfiguration host = services.UseHostConfiguration(this.Configuration);
+
+			services.AddDbContext<BookstoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("bookstore")));
 
 			services.AddAuthentication(options => {
 				options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -81,42 +83,42 @@ namespace Bookstore {
 
 				options.SaveTokens = true;
 
-				this.SetupPkce(options);
+				// this.SetupPkce(options);
 
 			});
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-			services.UseEntities();
+			services.AddEntities();
 
 		}
 
-		private void SetupPkce(OpenIdConnectOptions options) {
+		//private void SetupPkce(OpenIdConnectOptions options) {
 
-			options.Events.OnRedirectToIdentityProvider = context => {
-				if (context.ProtocolMessage.RequestType == OpenIdConnectRequestType.Authentication) {
-					var codeVerifier = CryptoRandom.CreateUniqueId(32);
-					context.Properties.Items.Add("code_verifier", codeVerifier);
-					string codeChallenge;
-					using (var sha256 = SHA256.Create()) {
-						var challengeBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(codeVerifier));
-						codeChallenge = Base64Url.Encode(challengeBytes);
-					}
-					context.ProtocolMessage.Parameters.Add("code_challenge", codeChallenge);
-					context.ProtocolMessage.Parameters.Add("code_challenge_method", "S256");
-				}
-				return Task.CompletedTask;
-			};
+		//	options.Events.OnRedirectToIdentityProvider = context => {
+		//		if (context.ProtocolMessage.RequestType == OpenIdConnectRequestType.Authentication) {
+		//			var codeVerifier = CryptoRandom.CreateUniqueId(32);
+		//			context.Properties.Items.Add("code_verifier", codeVerifier);
+		//			string codeChallenge;
+		//			using (var sha256 = SHA256.Create()) {
+		//				var challengeBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(codeVerifier));
+		//				codeChallenge = Base64Url.Encode(challengeBytes);
+		//			}
+		//			context.ProtocolMessage.Parameters.Add("code_challenge", codeChallenge);
+		//			context.ProtocolMessage.Parameters.Add("code_challenge_method", "S256");
+		//		}
+		//		return Task.CompletedTask;
+		//	};
 
-			options.Events.OnAuthorizationCodeReceived = context => {
-				if (context.TokenEndpointRequest?.GrantType == OpenIdConnectGrantTypes.AuthorizationCode) {
-					if (context.Properties.Items.TryGetValue("code_verifier", out var codeVerifier)) {
-						context.TokenEndpointRequest.Parameters.Add("code_verifier", codeVerifier);
-					}
-				}
-				return Task.CompletedTask;
-			};
+		//	options.Events.OnAuthorizationCodeReceived = context => {
+		//		if (context.TokenEndpointRequest?.GrantType == OpenIdConnectGrantTypes.AuthorizationCode) {
+		//			if (context.Properties.Items.TryGetValue("code_verifier", out var codeVerifier)) {
+		//				context.TokenEndpointRequest.Parameters.Add("code_verifier", codeVerifier);
+		//			}
+		//		}
+		//		return Task.CompletedTask;
+		//	};
 
-		}
+		//}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
 			loggerFactory.AddNLog();
@@ -128,9 +130,9 @@ namespace Bookstore {
 			app.UseMvc(routes => {
 				routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
 			});
-			Seed seed = app.ApplicationServices.GetService<Seed>();
-			seed.Run();
-			Logger.Info(this, "Data seeded");
+			app.UseSeed();
 		}
+
 	}
+
 }

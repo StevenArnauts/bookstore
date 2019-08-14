@@ -2,24 +2,28 @@
 @model Customer
 
 @{
-	ViewData["Title"] = "Customer " + Model.Name;
+	ViewData["Title"] = Model.Name;
 }
 <h2>@ViewData["Title"]</h2>
 
 <h3>Orders</h3>
 <table class="table">
-	<tr>
-		<th>Id</th>
-		<th>Date</th>
-		<th>Amount</th>
-	</tr>
-	@foreach (var order in Model.Orders) {
+	<thead>
 		<tr>
-			<td>@order.Id</td>
-			<td>@order.Date.ToString("dd/MM/yyyy")</td>
-			<td>@order.Amount</td>
+			<th>Description</th>
+			<th>Date</th>
+			<th>Amount</th>
 		</tr>
-	}
+	</thead>
+	<tbody>
+		@foreach (var order in Model.Orders) {
+			<tr>
+				<td>@order.Description</td>
+				<td>@order.Date.ToString("dd/MM/yyyy")</td>
+				<td>@order.Amount</td>
+			</tr>
+		}
+	</tbody>
 </table>
 
 @{ 

@@ -7,19 +7,21 @@
 <h2>@ViewData["Title"]</h2>
 
 <table class="table">
-	<tr>
-		<th>Id</th>
-		<th>Name</th>
-	</tr>
-	@foreach (var customer in Model) {
-		IDictionary<string, string> parms = new Dictionary<string, string> {
-			{ "id", customer.Id }
-		};
+	<thead>
 		<tr>
-			<td><a asp-action="Detail" asp-all-route-data="@parms">@customer.Id</a></td>
-			<td>@customer.Name</td>
+			<th>Name</th>
 		</tr>
-	}
+	</thead>
+	<tbody>
+		@foreach (var customer in Model) {
+			IDictionary<string, string> parms = new Dictionary<string, string> {
+				{ "id", customer.Id }
+			};
+			<tr>
+				<td><a asp-action="Detail" asp-all-route-data="@parms">@customer.Name</a></td>
+			</tr>
+		}
+	</tbody>
 </table>
 
 <a class="btn btn-default" asp-action="New" asp-controller="Customers">New</a>

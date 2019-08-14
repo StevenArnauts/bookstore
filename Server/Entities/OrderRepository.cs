@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bookstore.Entities {
 
-	/// <summary>
-	/// TODO: make this a bit generic (or could be an exercise??)
-	/// </summary>
 	public class OrderRepository : BaseRepository<Order> {
+
+		public OrderRepository(BookstoreContext context) : base(context) { }
+
+		protected override DbSet<Order> Set => this.Context.Orders;
+		protected override IQueryable<Order> Query => this.Context.Orders;
 
 		public Order Add(Customer customer, string description, DateTime date, decimal amount, string id = null) {
 			string i = id?? Guid.NewGuid().ToString("N").ToUpper();
@@ -15,6 +18,7 @@ namespace Bookstore.Entities {
 			this.Add(entity);
 			entity.Customer = customer;
 			customer.Orders.Add(entity);
+			this.Flush();
 			return entity;
 		}
 
