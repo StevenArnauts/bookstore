@@ -1,0 +1,63 @@
+@model Bookstore.Identity.Controllers.LoginViewModel
+@{
+	ViewData["Title"] = "Login";
+	Layout = "Base";
+}
+
+<div class="row" style="align-content: center">
+	<div class="col-md-4 col-md-offset-4">
+		<div class="outer-form" style="margin-top: 150px;">
+			<div class="panel-plain">
+				<div class="panel-plain-heading" style="margin:auto; width: 250px;"></div>
+				<div class="panel-body panel-plain-body">
+					<form class="form" name="form" method="post" action="Login" autocomplete="off">
+						@Html.HiddenFor(model => model.ReturnUrl)
+						<fieldset>
+							<div class="form-group">
+								<label for="username">Name</label>
+								<input name="Username" type="text" class="form-control" placeholder="Username" maxlength="100" autocomplete="off">
+								@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+							</div>
+							<div class="form-group">
+								<label for="Password">Password</label>
+								<input name="Password" type="password" class="form-control" placeholder="Password" maxlength="100" autocomplete="off">
+								@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+							</div>
+							<div class="form-group">
+								<input type="submit" class="btn btn-default pull-right" value="Login" />
+							</div>
+						</fieldset>
+						@Html.ValidationSummary()
+					</form>
+					@{
+						var parms = new Dictionary<string, string> {
+										{ "returnUrl", Model.ReturnUrl }
+									};
+					}
+					<a asp-action="Register" asp-controller="Account" asp-all-route-data="parms">Register</a>
+					<br />
+					@foreach (var provider in Model.VisibleExternalProviders) {
+						<a asp-action="ExternalLogin" asp-route-provider="@provider.AuthenticationScheme" asp-route-returnUrl="@Model.ReturnUrl">Log in with @provider.DisplayName</a>
+						<br />
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	@if (Model.VisibleExternalProviders.Any()) {
+	<div class="col-md-4 col-md-offset-4">
+		<ul class="list-inline">
+			
+		</ul>
+	</div>
+	}
+</div>
+@if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any()) {
+	<div class="alert alert-warning">
+		<strong>Invalid login request</strong>
+		There are no login schemes configured for this client.
+	</div>
+}

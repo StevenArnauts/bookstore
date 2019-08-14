@@ -1,0 +1,40 @@
+@model Bookstore.Identity.Models.RegisterModel
+@{
+	ViewData["Title"] = "Register";
+	Layout = "Base";
+}
+
+<div class="row" style="align-content: center">
+	<div class="col-md-8 col-sm-8 col-md-offset-2">
+		<div class="outer-form" style="margin-top: 150px;">
+			<div class="panel-plain">
+				<div class="panel-plain-heading">
+					Register
+				</div>
+				<div class="panel-body panel-plain-body">
+					<form class="form" name="form" method="post" action="Register" autocomplete="off">
+						@Html.HiddenFor(m => m.ReturnUrl)
+						<fieldset>
+							<div class="form-group">
+								<label for="username">Name</label>
+								<input name="Name" type="text" class="form-control" placeholder="Your name, e.g. John" maxlength="100" autocomplete="off">
+							</div>
+							<div class="form-group">
+								<label for="Email">Email</label>
+								<input name="Email" type="text" class="form-control" placeholder="A valid email address, e.g. john.doe@email.com" maxlength="100" autocomplete="off">
+							</div>
+							<div class="form-group">
+								<label for="Password">Password</label>
+								<input name="Password" type="password" class="form-control" placeholder="A password to protect your account" maxlength="100" autocomplete="off">
+							</div>
+							<div class="form-group">
+								<input type="submit" class="btn btn-default pull-right" value="Create" />
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model ConsentListModel
+
+@{
+	Layout = "Shell";
+}
+
+<table class="table">
+	<tr>
+		<th>Client</th>
+		<th>Scopes</th>
+		<th>Timestamp</th>
+		<th>Actions</th>
+	</tr>
+	@foreach (var consent in Model.Consents) {
+	<tr>
+		@{
+			var parms = new Dictionary<string, string> {
+				{ "clientId", consent.Client }
+			};
+		}
+		<td>@consent.Client</td>
+		<td>@consent.Scopes</td>
+		<td>@consent.Timestamp.ToString("dd/MM/yyyy")</td>
+		<td><a asp-action="Revoke" asp-controller="Consent" asp-all-route-data="@parms">Revoke</a></td>
+	</tr>
+	}
+</table>

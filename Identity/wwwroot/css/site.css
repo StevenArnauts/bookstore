@@ -1,0 +1,108 @@
+﻿@font-face {
+	font-family: roboto;
+	src: url('/fonts/roboto-regular.ttf');
+}
+
+body {
+	font-family: roboto, sans-serif;
+	font-size: 14px;
+	color: black;
+	/*background-image: url('/images/tree.jpg');*/
+	background-repeat: no-repeat;
+	background-size: cover;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="text"]:focus,
+input[type="password"]:focus
+{
+	border-color: #FF7921;
+	outline: 0;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="submit"]:focus {
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,121,33,.6);
+}
+
+.vertical-center {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+}
+
+.navbar-inverse {
+	background-color: #FF7921;
+	border-bottom-color: #FF7921;
+}
+
+.navbar-inverse .navbar-nav li a {
+	color: white;
+}
+
+.navbar-inverse .navbar-nav li a:hover {
+	color: lightgray;
+}
+
+.navbar-brand {
+	color: white !important;
+}
+
+.page-header {
+	border: none;
+}
+
+label {
+	font-weight: normal;
+}
+
+.panel-plain {
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 5px;
+}
+
+.panel-plain-heading {
+	padding: 25px 15px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	font-size: 17px;
+}
+
+.panel-plain-body {
+	background-color: white;
+	border-radius: 5px;
+}
+
+.outer-form {
+	padding: 20px;
+	background-color: #ffffff;
+	background-color: rgba(255,255,255,0.75);
+	border: none;
+	border-radius: 4px;
+}
+
+.btn-default, .btn-default:hover, .btn-default:focus {
+	background-color: #FF7921;
+	border-color: #FF7921;
+	padding: 8px 30px;
+	width: 200px;
+	color: white;
+}
+
+.btn-default:focus {
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,121,33,.6);
+}
+
