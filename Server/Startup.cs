@@ -47,7 +47,8 @@ namespace Bookstore {
 
 			HostConfiguration host = services.UseHostConfiguration(this.Configuration);
 
-			services.AddDbContext<BookstoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("bookstore")));
+			//services.AddDbContext<BookstoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("bookstore")));
+			services.AddEntityFrameworkNpgsql().AddDbContext<BookstoreContext>().BuildServiceProvider();
 
 			services.AddAuthentication(options => {
 				options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;

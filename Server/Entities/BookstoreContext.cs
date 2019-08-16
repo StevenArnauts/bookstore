@@ -10,6 +10,11 @@ namespace Bookstore.Entities {
 		public DbSet<Customer> Customers { get; set; }
 		public DbSet<Order> Orders { get; set; }
 
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			optionsBuilder.UseNpgsql("Host=localhost;Database=BookStore;Username=postgres;Password=pencil42");
+		}
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {
 			modelBuilder.Entity<Customer>().ToTable("customer");
 			modelBuilder.Entity<Order>().ToTable("order");
