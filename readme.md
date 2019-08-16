@@ -15,4 +15,6 @@ This is a demo application to use for demonstrations and try out new things.
 
 ### To Do
 * Unit of work? In EF Core disposing the DbContext doesn't seem to trigger SaveChanges any more?
-* 
+* Add explicit EF mappings (1 per type)
+* Split customercontroller (or do it in the training)
+

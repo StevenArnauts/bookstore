@@ -8,6 +8,7 @@ namespace Bookstore.Controllers {
 
 	public class AccountController : Controller {
 
+		[AllowAnonymous]
 		public async Task Login(string returnUrl = "/") {
 			await HttpContext.ChallengeAsync("bsid", new AuthenticationProperties() { RedirectUri = returnUrl });
 		}
@@ -21,12 +22,6 @@ namespace Bookstore.Controllers {
 			});
 			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 		}
-
-		//[Route("signout-callback")]
-		//[Authorize]
-		//public IActionResult SignoutCallback() {
-		//	return RedirectToAction("Index", "Home");
-		//}
 
 	}
 

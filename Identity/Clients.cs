@@ -45,6 +45,23 @@ namespace Bookstore.Identity {
 						baseUrls + ":6101",
 						baseUrls + ":6101/signout-callback"
 					}
+				},
+				new Client {
+					ClientId = "postman",
+					ClientName = "Postman",
+					Description = "Postman Credentials",
+					ClientSecrets = new List<Secret> {
+						new Secret("secret".Sha256())
+					},
+					RequirePkce = false,
+					AllowedScopes = new List<string> {
+						"openid",
+						"profile",
+						"email",
+						"bookstore.orders"
+					},
+					AllowedGrantTypes = GrantTypes.ClientCredentials,
+					Enabled = true
 				}
 			};
 		}		

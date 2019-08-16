@@ -54,7 +54,6 @@ namespace Bookstore.Identity {
 			builder.AddInMemoryApiResources(new ApiResources().Get());
 			builder.AddProfileService<ProfileService>();
 			builder.AddSigningCredential(Certificate.FromFile("local.pfx", "pencil"));
-			builder.AddExtensionGrantValidator<KbcSsoGrantValidator>();
 			
 			services.UseEntities();
 			services.AddTransient<DoccleClient>();

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Bookstore.Controllers {
 
+	[Authorize(AuthenticationSchemes = "bsid")]
 	public class CustomersController : BaseController {
 
 		private readonly CustomerRepository _customers;
@@ -17,7 +18,6 @@ namespace Bookstore.Controllers {
 			return this.View(this._customers.Items);
 		}
 
-		[Authorize(AuthenticationSchemes = "bsid")]
 		[HttpGet]
 		public IActionResult New() {
 			return this.View();
