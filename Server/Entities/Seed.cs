@@ -5,12 +5,10 @@ namespace Bookstore.Entities {
 
 	public class Seed {
 
-		private readonly OrderRepository _orders;
 		private readonly CustomerRepository _customers;
 		private readonly BookstoreContext _context;
 
 		public Seed(BookstoreContext context) {
-			this._orders = new OrderRepository(context);
 			this._customers = new CustomerRepository(context);
 			this._context = context;
 		}
