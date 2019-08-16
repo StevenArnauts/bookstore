@@ -293,8 +293,8 @@ namespace Bookstore.Identity.Controllers {
 				Logger.Error(this, "Failed to remove refresh tokens", ex);
 			}
 
-			return View("LoggedOut", vm);
-			// return Redirect(vm.PostLogoutRedirectUri);
+			// return View("LoggedOut", vm);
+			return Redirect(vm.PostLogoutRedirectUri);
 		}
 	}
 

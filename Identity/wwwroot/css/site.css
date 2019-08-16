@@ -4,7 +4,7 @@
 }
 
 body {
-	font-family: roboto, sans-serif;
+	font-family: Quicksand, sans-serif;
 	font-size: 14px;
 	color: black;
 	/*background-image: url('/images/tree.jpg');*/
@@ -24,9 +24,8 @@ body {
 input[type="text"],
 input[type="password"],
 input[type="text"]:focus,
-input[type="password"]:focus
-{
-	border-color: #FF7921;
+input[type="password"]:focus {
+	border-color: rgb(14, 172, 189);
 	outline: 0;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 }
@@ -34,7 +33,7 @@ input[type="password"]:focus
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="submit"]:focus {
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,121,33,.6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(19,205,247,.6);
 }
 
 .vertical-center {
@@ -44,8 +43,8 @@ input[type="submit"]:focus {
 }
 
 .navbar-inverse {
-	background-color: #FF7921;
-	border-bottom-color: #FF7921;
+	background-color: rgb(14, 172, 189);
+	border-bottom-color: rgb(14, 172, 189);
 }
 
 .navbar-inverse .navbar-nav li a {
@@ -95,10 +94,10 @@ label {
 }
 
 .btn-default, .btn-default:hover, .btn-default:focus {
-	background-color: #FF7921;
-	border-color: #FF7921;
+	background-color: rgb(14, 172, 189);
+	border-color: rgb(14, 172, 189);
 	padding: 8px 30px;
-	width: 200px;
+	width: 120px;
 	color: white;
 }
 

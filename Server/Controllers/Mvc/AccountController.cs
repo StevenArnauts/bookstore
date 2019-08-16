@@ -15,11 +15,18 @@ namespace Bookstore.Controllers {
 		[Route("logout")]
 		[Authorize]
 		public async Task Logout() {
+			var url = Url.Action("Index", "Home");
 			await HttpContext.SignOutAsync("bsid", new AuthenticationProperties {
-				RedirectUri = Url.Action("Index", "Home")
+				RedirectUri = url
 			});
 			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 		}
+
+		//[Route("signout-callback")]
+		//[Authorize]
+		//public IActionResult SignoutCallback() {
+		//	return RedirectToAction("Index", "Home");
+		//}
 
 	}
 

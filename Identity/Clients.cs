@@ -42,7 +42,8 @@ namespace Bookstore.Identity {
 					},
 					PostLogoutRedirectUris = new List<string> {
 						baseUrl + ":6001",
-						baseUrls + ":6101"
+						baseUrls + ":6101",
+						baseUrls + ":6101/signout-callback"
 					}
 				}
 			};
