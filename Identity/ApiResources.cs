@@ -2,16 +2,17 @@
 using IdentityServer4.Models;
 
 namespace Bookstore.Identity {
+
 	public class ApiResources {
 
 		private readonly List<ApiResource> _apiResources = new List<ApiResource> {
 			new ApiResource {
-				Name = "Archive",
-				DisplayName = "Doccle Archive",
+				Name = "bookstore",
+				DisplayName = "Bookstore",
 				Scopes = new List<Scope> {
 					new Scope {
-						Name = "documents",
-						DisplayName = "Doccle Documents",
+						Name = "bookstore.orders",
+						DisplayName = "Bookstore Orders",
 						ShowInDiscoveryDocument = true
 					}					
 				}

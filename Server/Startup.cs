@@ -1,11 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using Common;
 using Bookstore.Entities;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,14 +9,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
-using Utilities.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
+using System.Text;
 
 namespace Bookstore {
+
+	public static class JwtSecurityKey {
+
+		public static SymmetricSecurityKey Create(string secret) {
+			return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret));
+		}
+
+	}
 
 	public class Startup {
 
@@ -56,6 +59,10 @@ namespace Bookstore {
 				options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 			})
 			.AddCookie()
+			 .AddJwtBearer("bsoa", options => {
+				 options.Authority = "https://localhost:6103";
+				 options.Audience = "bookstore";
+			 })
 			.AddOpenIdConnect("bsid", options => {
 				// options.Authority = "http://" + host.Host + ":6003";
 				options.Authority = "https://" + host.Host + ":6103";
@@ -94,35 +101,7 @@ namespace Bookstore {
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 			services.AddEntities();
 
-		}
-
-		//private void SetupPkce(OpenIdConnectOptions options) {
-
-		//	options.Events.OnRedirectToIdentityProvider = context => {
-		//		if (context.ProtocolMessage.RequestType == OpenIdConnectRequestType.Authentication) {
-		//			var codeVerifier = CryptoRandom.CreateUniqueId(32);
-		//			context.Properties.Items.Add("code_verifier", codeVerifier);
-		//			string codeChallenge;
-		//			using (var sha256 = SHA256.Create()) {
-		//				var challengeBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(codeVerifier));
-		//				codeChallenge = Base64Url.Encode(challengeBytes);
-		//			}
-		//			context.ProtocolMessage.Parameters.Add("code_challenge", codeChallenge);
-		//			context.ProtocolMessage.Parameters.Add("code_challenge_method", "S256");
-		//		}
-		//		return Task.CompletedTask;
-		//	};
-
-		//	options.Events.OnAuthorizationCodeReceived = context => {
-		//		if (context.TokenEndpointRequest?.GrantType == OpenIdConnectGrantTypes.AuthorizationCode) {
-		//			if (context.Properties.Items.TryGetValue("code_verifier", out var codeVerifier)) {
-		//				context.TokenEndpointRequest.Parameters.Add("code_verifier", codeVerifier);
-		//			}
-		//		}
-		//		return Task.CompletedTask;
-		//	};
-
-		//}
+		}	
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
 			loggerFactory.AddNLog();

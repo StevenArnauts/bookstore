@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "24a7759e-9092-4ec0-be7b-c3c157684ca4",
+		"name": "Bookstore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "postman",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "bookstore.orders",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:6103/connect/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "6103",
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Customers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://localhost:6101/api/customers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "6101",
+					"path": [
+						"api",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Customers",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Steven\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:6101/api/customers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "6101",
+					"path": [
+						"api",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Orders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkMzRDk2MEFCMzdENjZFQTBGRDY2OTdGM0QwMzYxMzkzOEFDMDU3N0YiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJ3OWxncXpmV2JxRDlacGZ6MERZVGs0ckFWMzgifQ.eyJuYmYiOjE1NjU5NjA3NjAsImV4cCI6MTU2NTk2NDM2MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NjEwMyIsImF1ZCI6WyJodHRwczovL2xvY2FsaG9zdDo2MTAzL3Jlc291cmNlcyIsImJvb2tzdG9yZSJdLCJjbGllbnRfaWQiOiJwb3N0bWFuIiwic2NvcGUiOlsiYm9va3N0b3JlLm9yZGVycyJdfQ.fjV-lZ0tvVj2g49BZaOjJpf4VCymceFk1k9KWYhQrKkPJuV-_9iBYSI4O6HwgW1VJpdfM3Lu0U2jvKAmH-zMj4kuasi5NWv55_UL-vP5ui1FAjWzdENy_czqalx_Ucp-zedpOt5hjRdGh4k_h-l5QiV7VZP0TYdmTYvv3dqBU2XJgkl59sSQ4Vxb4pmoPKfZFqsZ0av7HCvynBnuQ-ISjD4E-ExKuKYH84N4QeEwCUTY5SQSs9ABumN7_Ktp1LuacgF_SlrdjNJhhk5FtaYFw1Vl18LJGJn16tkSbQMw4Q72cOQGg5Qi71NZPGTEvki_LRwIGqPRFDHsFo3lJhpt_Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://localhost:6101/api/customers/4AAB84B1D097420684C3A45025862877/orders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "6101",
+					"path": [
+						"api",
+						"customers",
+						"4AAB84B1D097420684C3A45025862877",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkMzRDk2MEFCMzdENjZFQTBGRDY2OTdGM0QwMzYxMzkzOEFDMDU3N0YiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJ3OWxncXpmV2JxRDlacGZ6MERZVGs0ckFWMzgifQ.eyJuYmYiOjE1NjU5NjA3NjAsImV4cCI6MTU2NTk2NDM2MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NjEwMyIsImF1ZCI6WyJodHRwczovL2xvY2FsaG9zdDo2MTAzL3Jlc291cmNlcyIsImJvb2tzdG9yZSJdLCJjbGllbnRfaWQiOiJwb3N0bWFuIiwic2NvcGUiOlsiYm9va3N0b3JlLm9yZGVycyJdfQ.fjV-lZ0tvVj2g49BZaOjJpf4VCymceFk1k9KWYhQrKkPJuV-_9iBYSI4O6HwgW1VJpdfM3Lu0U2jvKAmH-zMj4kuasi5NWv55_UL-vP5ui1FAjWzdENy_czqalx_Ucp-zedpOt5hjRdGh4k_h-l5QiV7VZP0TYdmTYvv3dqBU2XJgkl59sSQ4Vxb4pmoPKfZFqsZ0av7HCvynBnuQ-ISjD4E-ExKuKYH84N4QeEwCUTY5SQSs9ABumN7_Ktp1LuacgF_SlrdjNJhhk5FtaYFw1Vl18LJGJn16tkSbQMw4Q72cOQGg5Qi71NZPGTEvki_LRwIGqPRFDHsFo3lJhpt_Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"date\": \"2019-04-27 14:30:00\",\n\t\"amount\": 100.99,\n\t\"description\": \"More Pencil stuff\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:6101/api/customers/A64AB989C1F747F68C0562AD548A5E8B/orders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "6101",
+					"path": [
+						"api",
+						"customers",
+						"A64AB989C1F747F68C0562AD548A5E8B",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

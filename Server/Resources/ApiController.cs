@@ -2,13 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Bookstore.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bookstore.Controllers {
 
-	/// <summary>
-	/// Web API for senders
-	/// </summary>
+	[Authorize(AuthenticationSchemes = "bsoa")]
 	[Route("api")]
 	[ApiController]
 	public class ApiController : ControllerBase {
