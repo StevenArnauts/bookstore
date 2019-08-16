@@ -93,8 +93,6 @@ namespace Bookstore {
 
 				options.SaveTokens = true;
 
-				// this.SetupPkce(options);
-
 			});
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
