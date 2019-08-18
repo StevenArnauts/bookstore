@@ -1,0 +1,62 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch Server",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build server",
+            "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp2.2/Server.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Server",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "dev",
+                "ASPNETCORE_URLS": "https://localhost:6101"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Launch Identity",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build identity",
+            "program": "${workspaceFolder}/Identity/bin/Debug/netcoreapp2.2/Identity.dll",            
+            "args": [],
+            "cwd": "${workspaceFolder}/Identity",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "dev",
+                "ASPNETCORE_URLS": "https://localhost:6103"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Server/Identity",
+            "configurations": [".NET Core Launch Server", ".NET Core Launch Identity"]
+        }
+    ]
+}
