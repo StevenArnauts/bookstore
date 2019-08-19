@@ -19,43 +19,44 @@ This is a demo application to use for demonstrations and try out new things.
 * Split customercontroller (or do it in the training)
 
 
+<br/><br/>
+## Running on MacOS with PostgreSQL and VS Code
 
-
-### Running on MacOS with PostgreSQL and VS Code
-
-Note: it seems to be possible to build/debug multiple projects at the same time, but no time to figure that out yet. Cf e.g. https://elanderson.net/2018/04/run-multiple-projects-in-visual-studio-code/
-
-#### Install PostgreSQL and Postico
+### Install PostgreSQL and Postico
 On MacOS, a great and simple PostgreSQL implementation is Postgres.app together with Postico client.
-* Download Postgres.app from https://postgresapp.com/downloads.html
-Move to Applications folder and open it.
-Click "Initialize" to create a new server
+* Download Postgres.app from https://postgresapp.com/downloads.html  
+Move to Applications folder and open it.  
+Click "Initialize" to create a new server  
 You now have a PostgreSQL server running on your Mac with default settings:
-   Host	            localhost
-   Port	            5432
-   User	            your system user name
-   Database	        same as user
-   Password	        none
-   Connection URL	postgresql://localhost
 
-* Download Postico from https://eggerapps.at/postico/
+Setting | Default
+--- | --- 
+Host	         |localhost
+Port	         |5432
+User	         |your system user name
+Database	      |same as user
+Password	      |none
+Connection URL	|postgresql://localhost
+
+* Download Postico from https://eggerapps.at/postico/  
   Move to Applications folder and open it.
 
 
 #### Prepare database
-In Postico, click "+Database" and name it bookstore.
-Open menu Navigate | Go to Terminal.
+In Postico, click "+Database" and name it bookstore.  
+Open menu Navigate | Go to Terminal.  
 Paste the following commands:
 ```
 create user pencil42 with encrypted password 'xxxxxxxx';
 grant all privileges on database bookstore to pencil42;
 ```
+Note: Adjust password as necessary.  
 Note: More fine-grained privileges may be appropriate, to look into.
 
 
 #### Server
 * Make sure you have .Net 2.2 SDK installed.
-* Make sure you truste the bookstore ca !!!
+* Make sure you trust the bookstore ca !!!
 * Clone and open project folder in VS Code.
   ```
   git clone https://github.com/StevenArnauts/bookstore.git
@@ -73,17 +74,21 @@ Note: More fine-grained privileges may be appropriate, to look into.
   <Exec Command="xcopy /Y $(SolutionDir)local.pfx $(ProjectDir)" Condition=" '$(OS)' == 'Windows_NT' " />
   <Exec Command="cp ../local.pfx $(ProjectDir)" Condition=" '$(OS)' != 'Windows_NT' " />
   ```
-  (Note: Haven't tested this on Windows yet! Also, if solution is accepted, then )
+  Note: Not tested this on Windows yet! Also, if solution is accepted, then 
 
 * Go to Debug, click Start Debugging (the green arrow), select .Net Core and "Server" project.
 
-* In launch.json:
-  Change "ASPNETCORE_ENVIRONMENT": "dev"
+* In launch.json, set  
+  ``` 
+  "ASPNETCORE_ENVIRONMENT": "dev"
+  ```
 
-* Click Start Debugging again.
-  This should cause the DB to be initialized. Go check in Postico.
+* Click Start Debugging again.  
+  This should cause the DB to be initialized and seeded.  
+  Go check in Postico.
 
 #### Running both Identity and Server at the same time
-This is a bit complicated :)
-For now, see launch.json.sample and tasks.json.sample - these are copies of the files in .vscode folder.
-Specifically, look at the ASPNETCORE_URLS and the "compoounds" section in launch.json.sample.
+This is a bit complicated :)  
+For now, see launch.json.sample and tasks.json.sample - these are copies of the files in .vscode folder.  
+Specifically, look at the ASPNETCORE_URLS and the "compoounds" section in launch.json.sample.  
+For some background cf e.g. https://elanderson.net/2018/04/run-multiple-projects-in-visual-studio-code/
