@@ -4,6 +4,6 @@ namespace Utilities.Entities
 {
     public class Entity
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

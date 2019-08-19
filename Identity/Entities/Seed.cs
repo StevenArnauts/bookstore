@@ -1,15 +1,27 @@
-﻿namespace Bookstore.Identity.Entities {
+﻿using System.Linq;
+using Utilities.Entities;
+using Utilities.Logging;
 
-	public class Seed {
+namespace Bookstore.Identity.Entities {
 
+	public class Seed : ISeed {
+		
 		private readonly UserRepository _users;
+		private readonly IdentityContext _context;
 
-		public Seed(UserRepository users) {
-			this._users = users;
+		public Seed(IdentityContext context) {
+			this._users = new UserRepository(context);
+			this._context = context;
 		}
 
 		public void Run() {
-			var steven = this._users.Add("sar", "Steven", "steven@pencil42.be", "steven");
+			this._context.Database.EnsureCreated();
+			const string johnId = "john";
+			if (!this._context.Users.Any(u => u.Id == johnId)) {
+				this._users.Add(johnId, "John", "john.doe@pencil42.be", "john");
+				this._context.SaveChanges();
+			}			
+			Logger.Info(this, "Seeded");
 		}
 
 	}

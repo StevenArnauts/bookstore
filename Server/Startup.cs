@@ -14,6 +14,7 @@ using NLog.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
 using System.Text;
+using Utilities.Entities;
 
 namespace Bookstore {
 
@@ -50,7 +51,6 @@ namespace Bookstore {
 
 			HostConfiguration host = services.UseHostConfiguration(this.Configuration);
 
-			//services.AddDbContext<BookstoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("bookstore")));
 			services.AddDbContext<BookstoreContext>(options => { options.UseNpgsql(Configuration.GetConnectionString("bookstore")); });
 
 			services.AddAuthentication(options => {
@@ -97,7 +97,7 @@ namespace Bookstore {
 			});
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-			services.AddEntities();
+			services.AddEntities(typeof(Customer).Assembly);
 
 		}	
 

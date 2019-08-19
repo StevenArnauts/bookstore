@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Utilities.Entities;
 
 namespace Bookstore.Entities {
 
-	public class OrderRepository : BaseRepository<Order> {
+	public class OrderRepository : BaseRepository<BookstoreContext, Order> {
 
 		public OrderRepository(BookstoreContext context) : base(context) { }
 
