@@ -23,21 +23,21 @@ namespace Bookstore.Controllers {
 		[HttpGet]
 		[Route("customers")]
 		public async Task<ActionResult<IEnumerable<CustomerRepresentation>>> FindCustomers() {
-			var customers = this._customers.Items;
+			var customers = await this._customers.QueryAsync(c => true);
 			return this.Ok(customers.Select(d => CustomerRepresentation.FromEntity(d)));
 		}
 
 		[HttpPost]
 		[Route("customers")]
 		public async Task<ActionResult<CustomerRepresentation>> CreateCustomer([FromBody] CustomerSpecification spec) {
-			var customer = this._customers.Add(spec.Name);
+			var customer = await this._customers.AddAsync(spec.Name);
 			return this.Ok(CustomerRepresentation.FromEntity(customer));
 		}
 
 		[HttpGet]
 		[Route("customers/{customerId}/orders")]
 		public async Task<ActionResult<IEnumerable<OrderRepresentation>>> FindOrders([FromRoute] string customerId) {
-			var customer = this._customers.GetById(customerId);
+			var customer = await this._customers.GetByIdAsync(customerId);
 			var orders = customer.Orders;
 			return this.Ok(orders.Select(d => OrderRepresentation.FromEntity(d)));
 		}
@@ -45,8 +45,8 @@ namespace Bookstore.Controllers {
 		[HttpPost]
 		[Route("customers/{customerId}/orders")]
 		public async Task<ActionResult<OrderRepresentation>> CreateOrder([FromRoute] string customerId, [FromBody] OrderSpecification spec) {
-			var customer = this._customers.GetById(customerId);
-			var order = this._orders.Add(customer, spec.Description, spec.Date, spec.Amount);
+			var customer = await this._customers.GetByIdAsync(customerId);
+			var order = await this._orders.AddAsync(customer, spec.Description, spec.Date, spec.Amount);
 			return this.Ok(OrderRepresentation.FromEntity(order));
 		}
 
