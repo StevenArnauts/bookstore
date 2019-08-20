@@ -60,9 +60,7 @@ namespace Bookstore.Identity {
 			
 			services.AddEntities(typeof(User).Assembly);
 
-			// services.AddDbContext<IdentityContext>(options => { options.UseNpgsql(Configuration.GetConnectionString("identity")); });
-			// TODO: This Configuration.GetValue doesn't seem to work with appsettings.dev.json??
-			string connectionString = Configuration.GetValue<string>("ConnectionStrings::identity");
+			string connectionString = Configuration.GetConnectionString("identity");
 			services.AddDbContext<IdentityContext>(options => { options.UseNpgsql(connectionString); });
 		}
 

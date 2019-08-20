@@ -42,8 +42,7 @@ namespace Bookstore {
 
 			HostConfiguration host = services.UseHostConfiguration<HostConfiguration>(this.Configuration);
 
-			// services.AddDbContext<BookstoreContext>(options => { options.UseNpgsql(Configuration.GetConnectionString("bookstore")); });
-			string connectionString = Configuration.GetValue<string>("ConnectionStrings::bookstore");
+			string connectionString = Configuration.GetConnectionString("bookstore");
 			services.AddDbContext<BookstoreContext>(options => { options.UseNpgsql(connectionString); });
 
 			services.AddAuthentication(options => {
