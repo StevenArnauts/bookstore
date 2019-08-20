@@ -1,5 +1,5 @@
-﻿namespace Bookstore.Entities {
-
+﻿namespace Utilities.Entities
+{
 	public interface IRepository { }
 
 }

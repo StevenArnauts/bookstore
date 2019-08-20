@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using Utilities;
+using Utilities.Entities;
 using Utilities.Logging;
 
 namespace Bookstore.Identity {
@@ -55,8 +57,10 @@ namespace Bookstore.Identity {
 			builder.AddProfileService<ProfileService>();
 			builder.AddSigningCredential(Certificate.FromFile("local.pfx", "pencil"));
 			
-			services.UseEntities();
-			services.AddTransient<DoccleClient>();
+			services.AddEntities(typeof(User).Assembly);
+
+			services.AddDbContext<IdentityContext>(options => { options.UseNpgsql(Configuration.GetConnectionString("identity")); });
+
 
 		}
 

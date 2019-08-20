@@ -1,13 +1,18 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Utilities.Entities;
 using Utilities.Extensions;
 
 namespace Bookstore.Identity.Entities {
 
-	public class UserRepository : IRepository {
+	public class UserRepository : BaseRepository<IdentityContext, User> {
 
-		private readonly List<User> _users = new List<User>();
+		public UserRepository(IdentityContext context) : base(context) { }
+
+		protected override DbSet<User> Set => this.Context.Users;
+		protected override IQueryable<User> Query => this.Context.Users;
 
 		public User Add(string name, string email, string password) {
 			string id = Guid.NewGuid().ToString("N").ToUpper();
@@ -15,18 +20,18 @@ namespace Bookstore.Identity.Entities {
 		}
 
 		public User Add(string id, string name, string email, string password) {
-			if (this._users.Any(u => u.Id == id)) throw new Exception("User " + id + " already exists");
+			if (this.Set.Any(u => u.Id == id)) throw new Exception("User " + id + " already exists");
 			User user = new User { Id = id, Name = name, Email = email, Password = password };
-			this._users.Add(user);
+			this.Set.Add(user);
 			return user;
 		}
 
 		public User Get(string id) {
-			return this._users.Get(u => u.Id == id);
+			return this.Query.Get(u => u.Id == id);
 		}
 
 		internal User GetByName(string name) {
-			return this._users.Get(u => u.Name == name);
+			return this.Query.Get(u => u.Name == name);
 		}
 	}
 

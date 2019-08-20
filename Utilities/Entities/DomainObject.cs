@@ -8,7 +8,7 @@ namespace Utilities.Entities {
 			this.Entity = entity;
 		}
 
-		public Guid Id => this.Entity.Id;
+		public string Id => this.Entity.Id;
 
 		public TEntityType Entity { get; }
 

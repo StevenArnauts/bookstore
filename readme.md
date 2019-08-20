@@ -2,7 +2,7 @@
 This is a demo application to use for demonstrations and try out new things.
 
 ### Running
-* Requires SQL Server (Express)
+* Requires ProgreSQL 10 (https://www.postgresql.org/download/windows/)
 * Check the connection string in appsettings.json. The database and tables will be created automatically.
 * To customize settings locally:
   * Don't modify appsettings.json, as you might affect others.
