@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using IdentityServer4.Models;
+using Utilities.Web;
 
 namespace Bookstore.Identity {
 
 	public class Clients {
 
-		private readonly HostConfiguration _host;
+		private readonly WebConfiguration _host;
 		private readonly List<Client> _clients;
 
-		public Clients(HostConfiguration host) {
+		public Clients(WebConfiguration host) {
 			this._host = host;
 			string baseUrl = "http://" + host.Host;
 			string baseUrls = "https://" + host.Host;

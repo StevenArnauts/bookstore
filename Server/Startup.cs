@@ -1,5 +1,4 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
-using Common;
 using Bookstore.Entities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -13,18 +12,10 @@ using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
-using System.Text;
 using Utilities.Entities;
+using Utilities.Web;
 
 namespace Bookstore {
-
-	public static class JwtSecurityKey {
-
-		public static SymmetricSecurityKey Create(string secret) {
-			return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret));
-		}
-
-	}
 
 	public class Startup {
 
@@ -49,7 +40,7 @@ namespace Bookstore {
 				});
 			});
 
-			HostConfiguration host = services.UseHostConfiguration(this.Configuration);
+			HostConfiguration host = services.UseHostConfiguration<HostConfiguration>(this.Configuration);
 
 			services.AddDbContext<BookstoreContext>(options => { options.UseNpgsql(Configuration.GetConnectionString("bookstore")); });
 
@@ -60,12 +51,11 @@ namespace Bookstore {
 			})
 			.AddCookie()
 			 .AddJwtBearer("bsoa", options => {
-				 options.Authority = "https://localhost:6103";
+				 options.Authority = host.Authority;
 				 options.Audience = "bookstore";
 			 })
 			.AddOpenIdConnect("bsid", options => {
-				// options.Authority = "http://" + host.Host + ":6003";
-				options.Authority = "https://" + host.Host + ":6103";
+				options.Authority = host.Authority;
 				options.ClientId = "bookstore.orders";
 				options.ClientSecret = "secret";
 				options.ResponseType = "code";

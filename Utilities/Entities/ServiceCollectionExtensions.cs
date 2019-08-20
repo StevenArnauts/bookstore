@@ -27,7 +27,7 @@ namespace Utilities.Entities {
 				Logger.Debug(typeof(ServiceCollectionExtensions), "Looking for implementations of " + @interface.Name + " in assembly " + assembly.GetName().Name);
 				foreach (Type type in assembly.ExportedTypes) {
 					if (!type.IsAbstract && type.Implements(@interface)) {
-						collection.AddTransient(type);
+						collection.AddScoped(type);
 						Logger.Debug(typeof(Entity), "Registered " + type.FullName);
 					}
 				}

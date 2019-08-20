@@ -12,6 +12,7 @@ using NLog.Extensions.Logging;
 using Utilities;
 using Utilities.Entities;
 using Utilities.Logging;
+using Utilities.Web;
 
 namespace Bookstore.Identity {
 
@@ -43,7 +44,7 @@ namespace Bookstore.Identity {
 				.SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
 			;
 
-			HostConfiguration host = services.UseHostConfiguration(this.Configuration);
+			WebConfiguration host = services.UseHostConfiguration(this.Configuration);
 
 			services
 				.AddAuthentication(options => options.DefaultAuthenticateScheme = Authentication.Scheme)

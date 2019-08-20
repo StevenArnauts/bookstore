@@ -42,7 +42,7 @@ Connection URL	|postgresql://localhost
   Move to Applications folder and open it.
 
 
-#### Prepare database
+### Prepare database
 In Postico, click "+Database" and name it bookstore.  
 Open menu Navigate | Go to Terminal.  
 Paste the following commands:
@@ -54,7 +54,7 @@ Note: Adjust password as necessary (must match the one used in the connection st
 Note: More fine-grained privileges may be appropriate, to look into.
 
 
-#### Server
+### Server
 * Make sure you have .Net 2.2 SDK installed.
 * Make sure you trust the bookstore ca !!!
 * Clone and open project folder in VS Code.
@@ -76,27 +76,33 @@ Note: More fine-grained privileges may be appropriate, to look into.
   This should cause the DB to be initialized and seeded.  
   Go check in Postico.
 
-### Configuration
-Launch settings are considered to be a local thing, and are therefore excluded git in .gitignore. However, without Visual Studio
-it's convenient to start from an existing file. The launch settings must be in a file called launchSettings.json and must be in a Properties 
-subfolder. 
-#### Server
-Copy the file Configuration\server.json to Server\Properties\launchSettings.json
-
-#### Identity
-Copy the file Configuration\identity.json to Identity\Properties\launchSettings.json
-
 #### Running both Identity and Server at the same time
 This is a bit complicated :)  
 For now, see launch.json.sample and tasks.json.sample - these are copies of the files in .vscode folder.  
 Specifically, look at the ASPNETCORE_URLS and the "compoounds" section in launch.json.sample.  
 For some background cf e.g. https://elanderson.net/2018/04/run-multiple-projects-in-visual-studio-code/
 
-#### Running any project from the command line.
-If debugging more than one project simultaneously is not needed, an alternative approach is to run the project/process 
-that you are not debugging from the command line with the following command (executed from the root of the project)
-```
-dotnet run
-```
 
-Use HTTPS urls https://localhost:6101 and https://localhost:6103. VS Code will by default open http://0.0.0.0:6001.
+### Alternative
+
+Launch settings are considered to be a local thing, and are therefore excluded git in .gitignore. However, without Visual Studio 
+it's convenient to start from an existing file. Launch settings must be in a file called launchSettings.json and must be in a Properties 
+subfolder. 
+#### Server Launch Settings
+Copy the file Configuration\server.json to Server\Properties\launchSettings.json
+
+#### Identity Launch Settings
+Copy the file Configuration\identity.json to Identity\Properties\launchSettings.json
+
+#### Run Identity Server from the command line
+When debugging Identity Server simultaneously is not needed, an alternative approach is to run the project 
+simply from the command line with the following command
+
+```
+Identity>dotnet run
+```
+#### Run Server from Visual Studio (Code)
+Press F5, and choose Server as the project to run and debug. Or modify .vscode\launch.json.
+
+#### Debug
+VS Code will by default open http://0.0.0.0:6001, but you should use the HTTPS urls https://localhost:6101 and https://localhost:6103. 
