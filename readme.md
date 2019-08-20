@@ -103,6 +103,13 @@ Identity>dotnet run
 ```
 #### Run Server from Visual Studio (Code)
 Press F5, and choose Server as the project to run and debug. Or modify .vscode\launch.json.
+VS Code will add this section to launch.json
+```
+"env": {
+    "ASPNETCORE_ENVIRONMENT": "Development"
+}
+```
+Either remove it, or change the environment to "dev"
 
 #### Debug
 VS Code will by default open http://0.0.0.0:6001, but you should use the HTTPS urls https://localhost:6101 and https://localhost:6103. 
