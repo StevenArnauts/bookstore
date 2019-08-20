@@ -17,8 +17,8 @@ namespace Utilities.Entities {
 			AddImplementationsOf(collection, typeof(ISeed), assemblies);
 		}
 
-		public static void UseSeed(this IApplicationBuilder app) {
-			ISeed seed = app.ApplicationServices.GetService<ISeed>();
+		public static void UseSeed<TSeed>(this IApplicationBuilder app) where TSeed: ISeed {
+			TSeed seed = app.ApplicationServices.GetService<TSeed>();
 			seed.Run();
 		}
 

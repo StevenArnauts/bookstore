@@ -75,8 +75,7 @@ namespace Bookstore.Identity {
 			app.UseMvc(routes => {
 				routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
 			});
-			Seed seed = app.ApplicationServices.GetService<Seed>();
-			seed.Run();
+			app.UseSeed<Seed>();
 			Logger.Info(this, "Data seeded");
 		}
 
