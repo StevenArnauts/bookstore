@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "STARTING USERDATA!"
+echo "DON'T FORGET TO ADJUST THE VALUE OF CHANGEME"
 
 # Register the Microsoft key, register the product repository, and install required dependencies
 wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
@@ -14,14 +15,20 @@ sudo apt-get install dotnet-sdk-2.2=2.2.203-1 -y
 # Install AWS CLI
 sudo snap install aws-cli --classic
 
+
 # Clone git repo
 # For now at least, clone the runOnMacOS branch instead of master.
-# git clone --single-branch --branch runOnMacOS https://github.com/StevenArnauts/bookstore.git
-git clone --single-branch https://github.com/StevenArnauts/bookstore.git
+cd /var
+sudo git clone --single-branch --branch freetemp https://github.com/StevenArnauts/bookstore.git
+
+# Change owner
+sudo chown -R ubuntu /var/bookstore
 
 # Build and run some code (bookstore/Identiy project, in this case)
 export ASPNETCORE_ENVIRONMENT=dev
+export ConnectionStrings__identity="Host=bookstoredbtest4.c7xajvaahzcs.us-east-1.rds.amazonaws.com;Database=identity;Username=pencil42;Password=CHANGEME"
 cd bookstore/Identity/
+dotnet restore
 dotnet build
 dotnet run
 
