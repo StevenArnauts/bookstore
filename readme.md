@@ -50,7 +50,7 @@ Paste the following commands:
 create user pencil42 with encrypted password 'xxxxxxxx';
 grant all privileges on database bookstore to pencil42;
 ```
-Note: Adjust password as necessary.  
+Note: Adjust password as necessary (must match the one used in the connection string in appsettings.dev.json)
 Note: More fine-grained privileges may be appropriate, to look into.
 
 
@@ -65,17 +65,6 @@ Note: More fine-grained privileges may be appropriate, to look into.
   ```
 * When asked about unresolved dependencies or required assets to build and debug, click yes :)
 
-* In Server.csproj, change the line
-  ```
-  <Exec Command="xcopy /Y $(SolutionDir)local.pfx $(ProjectDir)" />
-  ```
-  to
-  ```
-  <Exec Command="xcopy /Y $(SolutionDir)local.pfx $(ProjectDir)" Condition=" '$(OS)' == 'Windows_NT' " />
-  <Exec Command="cp ../local.pfx $(ProjectDir)" Condition=" '$(OS)' != 'Windows_NT' " />
-  ```
-  Note: Not tested this on Windows yet! Also, if solution is accepted, then 
-
 * Go to Debug, click Start Debugging (the green arrow), select .Net Core and "Server" project.
 
 * In launch.json, set  
@@ -87,8 +76,27 @@ Note: More fine-grained privileges may be appropriate, to look into.
   This should cause the DB to be initialized and seeded.  
   Go check in Postico.
 
+### Configuration
+Launch settings are considered to be a local thing, and are therefore excluded git in .gitignore. However, without Visual Studio
+it's convenient to start from an existing file. The launch settings must be in a file called launchSettings.json and must be in a Properties 
+subfolder. 
+#### Server
+Copy the file Configuration\server.json to Server\Properties\launchSettings.json
+
+#### Identity
+Copy the file Configuration\identity.json to Identity\Properties\launchSettings.json
+
 #### Running both Identity and Server at the same time
 This is a bit complicated :)  
 For now, see launch.json.sample and tasks.json.sample - these are copies of the files in .vscode folder.  
 Specifically, look at the ASPNETCORE_URLS and the "compoounds" section in launch.json.sample.  
 For some background cf e.g. https://elanderson.net/2018/04/run-multiple-projects-in-visual-studio-code/
+
+#### Running any project from the command line.
+If debugging more than one project simultaneously is not needed, an alternative approach is to run the project/process 
+that you are not debugging from the command line with the following command (executed from the root of the project)
+```
+dotnet run
+```
+
+Use HTTPS urls https://localhost:6101 and https://localhost:6103. VS Code will by default open http://0.0.0.0:6001.

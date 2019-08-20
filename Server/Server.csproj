@@ -40,6 +40,10 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\local.pfx" Link="local.pfx" />
+  </ItemGroup>
+
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="xcopy /Y $(SolutionDir)local.pfx $(ProjectDir)" Condition=" '$(OS)' == 'Windows_NT' " />
     <Exec Command="cp ../local.pfx $(ProjectDir)" Condition=" '$(OS)' != 'Windows_NT' " />
