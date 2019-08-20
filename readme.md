@@ -52,7 +52,7 @@ grant all privileges on database bookstore to pencil42;
 ```
 Note: Adjust password as necessary (must match the one used in the connection string in appsettings.dev.json)
 Note: More fine-grained privileges may be appropriate, to look into.
-
+Note: Do the same for the 'identity' database (except creating the user)
 
 ### Server
 * Make sure you have .Net 2.2 SDK installed.
