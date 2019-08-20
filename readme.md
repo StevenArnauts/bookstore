@@ -18,3 +18,85 @@ This is a demo application to use for demonstrations and try out new things.
 * Add explicit EF mappings (1 per type)
 * Split customercontroller (or do it in the training)
 
+
+<br/><br/>
+## Running on MacOS with PostgreSQL and VS Code
+
+### Install PostgreSQL and Postico
+On MacOS, a great and simple PostgreSQL implementation is Postgres.app together with Postico client.
+* Download Postgres.app from https://postgresapp.com/downloads.html  
+Move to Applications folder and open it.  
+Click "Initialize" to create a new server  
+You now have a PostgreSQL server running on your Mac with default settings:
+
+Setting | Default
+--- | --- 
+Host	         |localhost
+Port	         |5432
+User	         |your system user name
+Database	      |same as user
+Password	      |none
+Connection URL	|postgresql://localhost
+
+* Download Postico from https://eggerapps.at/postico/  
+  Move to Applications folder and open it.
+
+
+#### Prepare database
+In Postico, click "+Database" and name it bookstore.  
+Open menu Navigate | Go to Terminal.  
+Paste the following commands:
+```
+create user pencil42 with encrypted password 'xxxxxxxx';
+grant all privileges on database bookstore to pencil42;
+```
+Note: Adjust password as necessary (must match the one used in the connection string in appsettings.dev.json)
+Note: More fine-grained privileges may be appropriate, to look into.
+
+
+#### Server
+* Make sure you have .Net 2.2 SDK installed.
+* Make sure you trust the bookstore ca !!!
+* Clone and open project folder in VS Code.
+  ```
+  git clone https://github.com/StevenArnauts/bookstore.git
+  cd bookstore
+  code .
+  ```
+* When asked about unresolved dependencies or required assets to build and debug, click yes :)
+
+* Go to Debug, click Start Debugging (the green arrow), select .Net Core and "Server" project.
+
+* In launch.json, set  
+  ``` 
+  "ASPNETCORE_ENVIRONMENT": "dev"
+  ```
+
+* Click Start Debugging again.  
+  This should cause the DB to be initialized and seeded.  
+  Go check in Postico.
+
+### Configuration
+Launch settings are considered to be a local thing, and are therefore excluded git in .gitignore. However, without Visual Studio
+it's convenient to start from an existing file. The launch settings must be in a file called launchSettings.json and must be in a Properties 
+subfolder. 
+#### Server
+Copy the file Configuration\server.json to Server\Properties\launchSettings.json
+
+#### Identity
+Copy the file Configuration\identity.json to Identity\Properties\launchSettings.json
+
+#### Running both Identity and Server at the same time
+This is a bit complicated :)  
+For now, see launch.json.sample and tasks.json.sample - these are copies of the files in .vscode folder.  
+Specifically, look at the ASPNETCORE_URLS and the "compoounds" section in launch.json.sample.  
+For some background cf e.g. https://elanderson.net/2018/04/run-multiple-projects-in-visual-studio-code/
+
+#### Running any project from the command line.
+If debugging more than one project simultaneously is not needed, an alternative approach is to run the project/process 
+that you are not debugging from the command line with the following command (executed from the root of the project)
+```
+dotnet run
+```
+
+Use HTTPS urls https://localhost:6101 and https://localhost:6103. VS Code will by default open http://0.0.0.0:6001.

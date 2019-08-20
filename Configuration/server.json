@@ -1,0 +1,25 @@
+{
+	"iisSettings": {
+		"windowsAuthentication": false,
+		"anonymousAuthentication": true,
+		"iisExpress": {
+			"applicationUrl": "http://0.0.0.0:6001",
+			"sslPort": 0
+		}
+	},
+	"profiles": {
+		"IIS Express": {
+			"commandName": "IISExpress",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "dev"
+			}
+		},
+		"Server": {
+			"commandName": "Project",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "dev"
+			},
+			"applicationUrl": "http://0.0.0.0:6001;https://0.0.0.0:6101"
+		}
+	}
+}

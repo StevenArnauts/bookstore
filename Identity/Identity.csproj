@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\local.pfx" Link="local.pfx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="IdentityServer4" Version="2.5.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -41,7 +45,10 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="xcopy /Y $(SolutionDir)local.pfx $(ProjectDir)" />
+    <Exec Command="xcopy /Y $(SolutionDir)local.pfx $(ProjectDir)" Condition=" '$(OS)' == 'Windows_NT' " />
+    <Exec Command="cp ../local.pfx $(ProjectDir)" Condition=" '$(OS)' != 'Windows_NT' " />
   </Target>
+
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
