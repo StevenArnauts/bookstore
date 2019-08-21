@@ -26,12 +26,14 @@ sudo git clone --single-branch --branch freetemp https://github.com/StevenArnaut
 # Change owner
 sudo chown -R ubuntu /var/bookstore
 
-# Build and run some code (bookstore/Identity project, in this case)
+# Build and run some code (bookstore/Server project, in this case)
 export DOTNET_CLI_HOME=/tmp
 export ASPNETCORE_ENVIRONMENT=dev
-export ASPNETCORE_URLS=https://*:6103 # TODO: This probably isn't necessary any more - ALB can route any port to any port.
-export ConnectionStrings__identity="Host=bookstoredbtest4.c7xajvaahzcs.us-east-1.rds.amazonaws.com;Database=identity;Username=pencil42;Password=CHANGEME"
-cd bookstore/Identity/
+export ASPNETCORE_URLS=https://*:6101 # TODO: This probably isn't necessary any more - ALB can route any port to any port.
+export ConnectionStrings__bookstore="Host=bookstoredbtest4.c7xajvaahzcs.us-east-1.rds.amazonaws.com;Database=bookstore;Username=pencil42;Password=CHANGEME"
+export Web__Authority="https://ids.sbx.pencil42-apps.be:6103"
+
+cd bookstore/Server/
 dotnet restore
 dotnet build
 nohup dotnet run > dotnetrun_output.txt 2>&1 &
