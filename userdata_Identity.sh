@@ -31,6 +31,8 @@ export DOTNET_CLI_HOME=/tmp
 export ASPNETCORE_ENVIRONMENT=dev
 export ASPNETCORE_URLS=https://*:6103 # TODO: This probably isn't necessary any more - ALB can route any port to any port.
 export ConnectionStrings__identity="Host=bookstoredbtest4.c7xajvaahzcs.us-east-1.rds.amazonaws.com;Database=identity;Username=pencil42;Password=CHANGEME"
+export Web__Host="server.sbx.pencil42-apps.be" # TODO: Is this the proper way to configure this?
+
 cd bookstore/Identity/
 dotnet restore
 dotnet build
