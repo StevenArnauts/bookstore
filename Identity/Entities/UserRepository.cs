@@ -33,6 +33,11 @@ namespace Bookstore.Identity.Entities {
 		internal User GetByName(string name) {
 			return this.Query.Get(u => u.Name == name);
 		}
+
+		internal User FindByName(string name) {
+			return this.Query.FirstOrDefault(u => u.Name == name);
+		}
+
 	}
 
 }

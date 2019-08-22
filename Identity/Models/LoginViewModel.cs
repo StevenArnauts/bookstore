@@ -1,13 +1,13 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Bookstore.Identity.Controllers {
+namespace Bookstore.Identity.Models {
 
 	public class LoginViewModel : LoginInputModel {
+
+		public LoginViewModel() {
+			this.ExternalProviders = new List<ExternalProvider>();
+		}
 
 		public bool AllowRememberLogin { get; set; }
 		public bool EnableLocalLogin { get; set; }
@@ -17,6 +17,7 @@ namespace Bookstore.Identity.Controllers {
 
 		public bool IsExternalLoginOnly => EnableLocalLogin == false && ExternalProviders?.Count() == 1;
 		public string ExternalLoginScheme => IsExternalLoginOnly ? ExternalProviders?.SingleOrDefault()?.AuthenticationScheme : null;
+
 	}
 
 }

@@ -1,21 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bookstore.Controllers;
 using Bookstore.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bookstore.Controllers {
+namespace Bookstore.Resources {
 
 	[Authorize(AuthenticationSchemes = "bsoa")]
 	[Route("api")]
 	[ApiController]
-	public class ApiController : ControllerBase {
+	public class CustomerResource : ControllerBase {
 
 		private readonly CustomerRepository _customers;
 		private readonly OrderRepository _orders;
 
-		public ApiController(CustomerRepository customers, OrderRepository orders) {
+		public CustomerResource(CustomerRepository customers, OrderRepository orders) {
 			this._customers = customers;
 			this._orders = orders;
 		}		

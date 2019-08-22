@@ -5,9 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Api\**" />
     <Compile Remove="Services\**" />
+    <Content Remove="Controllers\Api\**" />
     <Content Remove="Services\**" />
+    <EmbeddedResource Remove="Controllers\Api\**" />
     <EmbeddedResource Remove="Services\**" />
+    <None Remove="Controllers\Api\**" />
     <None Remove="Services\**" />
   </ItemGroup>
 
@@ -39,10 +43,6 @@
     <Content Update="Views\Customers\List.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\Api\" />
   </ItemGroup>
 
   <ItemGroup>

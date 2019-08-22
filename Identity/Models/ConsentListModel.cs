@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace Bookstore.Identity.Models {
+
 	public class ConsentListModel {
 
 		public ConsentListModel() {

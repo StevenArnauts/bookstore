@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Bookstore.Identity.Controllers.Consent {
+namespace Bookstore.Identity.Models {
 
 	public class ConsentInputModel {
 		public string Button { get; set; }

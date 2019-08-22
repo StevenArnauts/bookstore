@@ -8,6 +8,7 @@ using IdentityServer4.Stores;
 using ConsentModel = IdentityServer4.Models.Consent;
 
 using Microsoft.Extensions.Logging;
+using Bookstore.Identity.Models;
 
 namespace Bookstore.Identity.Controllers.Consent {
 

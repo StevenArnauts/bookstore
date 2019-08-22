@@ -5,6 +5,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Bookstore.Identity.Models;
 using IdentityModel;
 using IdentityServer4.Extensions;
 using IdentityServer4.Services;

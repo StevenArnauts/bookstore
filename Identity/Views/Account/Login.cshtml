@@ -1,4 +1,4 @@
-@model Bookstore.Identity.Controllers.LoginViewModel
+@model Bookstore.Identity.Models.LoginModel
 @{
 	ViewData["Title"] = "Login";
 	Layout = "Base";
@@ -9,14 +9,14 @@
 		<div class="outer-form" style="margin-top: 150px;">
 			<div class="panel-plain">
 				<div class="panel-plain-heading" style="margin:auto; width: 250px;"></div>
-				<div class="panel-body panel-plain-body">
+				<fieldset class="panel-body panel-plain-body">
 					<form class="form" name="form" method="post" action="Login" autocomplete="off">
 						@Html.HiddenFor(model => model.ReturnUrl)
 						<fieldset>
 							<div class="form-group">
 								<label for="username">Name</label>
 								<input name="Username" type="text" class="form-control" placeholder="Username" maxlength="100" autocomplete="off">
-								@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+								@Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
 							</div>
 							<div class="form-group">
 								<label for="Password">Password</label>
@@ -27,12 +27,14 @@
 								<input type="submit" class="btn btn-default pull-right" value="Login" />
 							</div>
 						</fieldset>
-						@Html.ValidationSummary()
+						<div class="alert alert-warning" style="margin-top: 15px;">
+							@Html.ValidationSummary()
+						</div>
 					</form>
 					@{
 						var parms = new Dictionary<string, string> {
-										{ "returnUrl", Model.ReturnUrl }
-									};
+							{ "returnUrl", Model.ReturnUrl }
+						};
 					}
 					<a asp-action="Register" asp-controller="Account" asp-all-route-data="parms">Register</a>
 					<br />
@@ -40,7 +42,7 @@
 						<a asp-action="ExternalLogin" asp-route-provider="@provider.AuthenticationScheme" asp-route-returnUrl="@Model.ReturnUrl">Log in with @provider.DisplayName</a>
 						<br />
 					}
-				</div>
+				</fieldset>
 			</div>
 		</div>
 	</div>
@@ -55,9 +57,3 @@
 	</div>
 	}
 </div>
-@if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any()) {
-	<div class="alert alert-warning">
-		<strong>Invalid login request</strong>
-		There are no login schemes configured for this client.
-	</div>
-}

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Bookstore.Identity.Entities;
@@ -17,18 +16,7 @@ using Utilities.Exceptions;
 using Utilities.Extensions;
 using Utilities.Logging;
 
-namespace Bookstore.Identity.Controllers
-{
-
-	public class ProfileModel {
-
-		public ProfileModel() {
-			this.Claims = new List<Claim>();
-		}
-
-		public List<Claim> Claims { get; set; }
-
-	}
+namespace Bookstore.Identity.Controllers {
 
 	public class AccountController: Controller {
 
@@ -90,7 +78,7 @@ namespace Bookstore.Identity.Controllers
 					ModelState.AddModelError("Username", "User does not exist");
 				}
 			}
-			return View();
+			return View(model);
 		}
 
 		[AllowAnonymous]
