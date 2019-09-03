@@ -25,7 +25,7 @@ namespace Bookstore.Identity {
 					AllowAccessTokensViaBrowser = true,
 					AllowedCorsOrigins = new List<string> {
 						baseUrl + ":6001",
-						baseUrls + ":6101"
+						baseUrls
 					},
 					AllowedScopes = new List<string> {
 						"openid",
@@ -39,12 +39,12 @@ namespace Bookstore.Identity {
 					EnableLocalLogin = true,
 					RedirectUris = new List<string> {
 						baseUrl + ":6001/callback",
-						baseUrls + ":6101/callback"
+						baseUrls + "/callback"
 					},
 					PostLogoutRedirectUris = new List<string> {
 						baseUrl + ":6001",
-						baseUrls + ":6101",
-						baseUrls + ":6101/signout-callback"
+						baseUrls,
+						baseUrls + "/signout-callback"
 					}
 				},
 				new Client {
