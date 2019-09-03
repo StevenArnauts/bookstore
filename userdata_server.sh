@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "STARTING USERDATA!"
-echo "DON'T FORGET TO ADJUST THE VALUE OF CHANGEME"
+echo "DON'T FORGET TO ADJUST THE VALUE OF CHANGEME AND POSSIBLY OTHER ENVIRONMENT VARIABLES"
 
 # Note: SSL is assumed to be handled by an ALB in front of this instance (or this collection of instances).
 
@@ -19,7 +19,7 @@ sudo snap install aws-cli --classic
 
 
 # Clone git repo
-# For now at least, clone the runOnMacOS branch instead of master.
+# For now at least, clone the freetemp branch instead of master.
 cd /var
 sudo git clone --single-branch --branch freetemp https://github.com/StevenArnauts/bookstore.git
 
@@ -29,9 +29,12 @@ sudo chown -R ubuntu /var/bookstore
 # Build and run some code (bookstore/Server project, in this case)
 export DOTNET_CLI_HOME=/tmp
 export ASPNETCORE_ENVIRONMENT=dev
-export ASPNETCORE_URLS=https://*:6101 # TODO: This probably isn't necessary any more - ALB can route any port to any port.
-export ConnectionStrings__bookstore="Host=bookstoredbtest4.c7xajvaahzcs.us-east-1.rds.amazonaws.com;Database=bookstore;Username=pencil42;Password=CHANGEME"
-export Web__Authority="https://ids.sbx.pencil42-apps.be:6103"
+export ASPNETCORE_URLS=https://*:443
+export ConnectionStrings__bookstore="Host=bookstoredbfwi.c7xajvaahzcs.us-east-1.rds.amazonaws.com;Database=bookstore;Username=pencil42;Password=CHANGEME"
+export Web__Authority="https://ids-fwi.sbx.pencil42-apps.be"
+
+# Log all env vars
+export
 
 cd bookstore/Server/
 dotnet restore
