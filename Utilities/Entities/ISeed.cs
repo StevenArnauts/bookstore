@@ -1,7 +1,9 @@
-﻿namespace Utilities.Entities
-{
+﻿using System.Threading.Tasks;
+
+namespace Utilities.Entities {
+
 	public interface ISeed {
-		void Run();
+		Task RunAsync();
 	}
 
 }

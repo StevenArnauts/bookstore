@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Bookstore - @ViewData["Title"]</title>
-	<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+	@*<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">*@
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 	<link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -22,9 +22,11 @@
 			<div class="navbar-collapse collapse">
 				@if (this.User != null && this.User.Identity.IsAuthenticated) {
 				<ul class="nav navbar-nav">
-					<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-					<li><a asp-area="" asp-controller="Customers" asp-action="List">Customers</a></li>
-					<li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+					<li><a asp-controller="Home" asp-action="Index">Home</a></li>
+					<li><a asp-controller="Customers" asp-action="List">Customers</a></li>
+					<li><a asp-controller="Products" asp-action="List">Products</a></li>
+					<li><a asp-controller="Orders" asp-action="List">Orders</a></li>
+					<li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
 				</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="javascript:void(0);">@this.User.Identity.Name</a></li>

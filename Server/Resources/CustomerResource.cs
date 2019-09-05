@@ -15,10 +15,12 @@ namespace Bookstore.Resources {
 
 		private readonly CustomerRepository _customers;
 		private readonly OrderRepository _orders;
+		private readonly ProductRepository _products;
 
-		public CustomerResource(CustomerRepository customers, OrderRepository orders) {
+		public CustomerResource(CustomerRepository customers, OrderRepository orders, ProductRepository products) {
 			this._customers = customers;
 			this._orders = orders;
+			this._products = products;
 		}		
 
 		[HttpGet]
@@ -47,7 +49,11 @@ namespace Bookstore.Resources {
 		[Route("customers/{customerId}/orders")]
 		public async Task<ActionResult<OrderRepresentation>> CreateOrder([FromRoute] string customerId, [FromBody] OrderSpecification spec) {
 			var customer = await this._customers.GetByIdAsync(customerId);
-			var order = await this._orders.AddAsync(customer, spec.Description, spec.Date, spec.Amount);
+			var order = await this._orders.AddAsync(customer, spec.Description, spec.Date);
+			foreach(OrderLineSpecification line in spec.Lines) {
+				Product product = await this._products.GetByIdAsync(line.ProductId);
+				this._orders.AddLine(order, product, line.Amount);
+			}
 			return this.Ok(OrderRepresentation.FromEntity(order));
 		}
 

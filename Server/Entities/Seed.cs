@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Utilities.Entities;
 using Utilities.Logging;
 
@@ -14,13 +15,13 @@ namespace Bookstore.Entities {
 			this._context = context;
 		}
 
-		public void Run() {
+		public async Task RunAsync() {
 			this._context.Database.EnsureCreated();
 			if(!this._context.Customers.Any(c => c.Id == "kbc")) {
-				this._customers.Add("KBC", "kbc");
+				await this._customers.AddAsync("KBC", "kbc");
 			}
 			if (!this._context.Customers.Any(c => c.Name == "Telenet")) {
-				this._customers.Add("Telenet");
+				await this._customers.AddAsync("Telenet");
 			}
 			this._context.SaveChanges();
 			Logger.Info(this, "Seeded");

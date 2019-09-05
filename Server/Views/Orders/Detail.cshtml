@@ -1,0 +1,37 @@
+﻿@using Bookstore.Controllers
+@model OrderRepresentation
+
+@{
+	ViewData["Title"] = "Order " + Model.Description;
+}
+<h2>@ViewData["Title"]</h2>
+
+<h3>Lines</h3>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Product</th>
+			<th>Amount</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var line in Model.Lines) {
+			<tr>
+				<td>@line.Id</td>
+				<td>@line.ProductName</td>
+				<td>@line.Amount</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@{
+	IDictionary<string, string> args = new Dictionary<string, string> {
+		{ "id", Model.Id }
+	};
+}
+
+<form asp-controller="Orders" asp-action="Remove" asp-all-route-data="@args">
+	<button class="btn btn-danger" type="submit">Delete</button>
+</form>

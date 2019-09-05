@@ -1,11 +1,10 @@
-using System;
+namespace Bookstore.Models {
 
-namespace Bookstore.Models
-{
-    public class ErrorViewModel
-    {
-        public string RequestId { get; set; }
+	public class ErrorViewModel {
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-    }
+		public string RequestId { get; set; }
+		public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+
+	}
+
 }

@@ -20,7 +20,7 @@ namespace Utilities.Entities {
 		public static void UseSeed<TSeed>(this IApplicationBuilder app) where TSeed: ISeed {
 			using(var scope = app.ApplicationServices.CreateScope()) {
 				TSeed seed = scope.ServiceProvider.GetService<TSeed>();
-				seed.Run();
+				seed.RunAsync().Wait();
 			}		
 		}
 

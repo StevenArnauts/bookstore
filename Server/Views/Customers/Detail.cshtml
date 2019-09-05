@@ -10,6 +10,7 @@
 <table class="table">
 	<thead>
 		<tr>
+			<th>Id</th>
 			<th>Description</th>
 			<th>Date</th>
 			<th>Amount</th>
@@ -18,6 +19,10 @@
 	<tbody>
 		@foreach (var order in Model.Orders) {
 			<tr>
+				@{
+					IDictionary<string, string> args = new Dictionary<string, string> { { "id", order.Id } };
+				}
+				<td><a asp-action="Detail" asp-controller="Orders" asp-all-route-data="@args">@order.Id</a></td>
 				<td>@order.Description</td>
 				<td>@order.Date.ToString("dd/MM/yyyy")</td>
 				<td>@order.Amount</td>

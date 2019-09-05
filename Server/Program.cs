@@ -15,7 +15,7 @@ namespace Bookstore {
 
 		public static IWebHost BuildWebHost(string[] args) {
 			IWebHostBuilder builder = new DefaultWebHostBuilderFactory().Build<Startup>(args);
-			X509Certificate2 cert = Certificate.FromFile("local.pfx", "pencil");;
+			X509Certificate2 cert = Certificate.FromFile("local.pfx", "pencil");
 			builder.UseKestrel(options => {
 				options.ConfigureHttpsDefaults(httpsOptions => {
 					httpsOptions.ServerCertificate = cert;

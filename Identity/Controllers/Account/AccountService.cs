@@ -29,11 +29,11 @@ namespace Bookstore.Identity.Controllers {
 			this._clientStore = clientStore;
 		}
 
-		public async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl) {
+		public async Task<LoginModel> BuildLoginViewModelAsync(string returnUrl) {
 			IdentityServer4.Models.AuthorizationRequest context = await this._interaction.GetAuthorizationContextAsync(returnUrl);
 			if (context?.IdP != null) {
 				// this is meant to short circuit the UI and only trigger the one external IdP
-				return new LoginViewModel {
+				return new LoginModel {
 					EnableLocalLogin = false,
 					ReturnUrl = returnUrl,
 					Email = context?.LoginHint,
@@ -65,7 +65,7 @@ namespace Bookstore.Identity.Controllers {
 				}
 			}
 
-			return new LoginViewModel {
+			return new LoginModel {
 				AllowRememberLogin = AccountOptions.AllowRememberLogin,
 				EnableLocalLogin = allowLocal && AccountOptions.AllowLocalLogin,
 				ReturnUrl = returnUrl,

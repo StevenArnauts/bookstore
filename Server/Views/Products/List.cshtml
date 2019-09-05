@@ -1,0 +1,31 @@
+﻿@using Bookstore.Entities
+@model IEnumerable<Product>
+
+@{
+	ViewData["Title"] = "Products";
+}
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Stock</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var product in Model) {
+			IDictionary<string, string> parms = new Dictionary<string, string> {
+				{ "id", product.Id }
+			};
+			<tr>
+				<td><a asp-action="Edit" asp-all-route-data="@parms">@product.Name</a></td>
+				<td>@product.Price</td>
+				<td>@product.Stock</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<a class="btn btn-default" asp-action="New" asp-controller="Products">New</a>

@@ -1,9 +1,9 @@
-using System;
+namespace Utilities.Entities {
 
-namespace Utilities.Entities
-{
-    public class Entity
-    {
-        public string Id { get; set; }
-    }
+	public class Entity {
+
+		public string Id { get; set; }
+
+	}
+
 }

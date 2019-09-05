@@ -54,7 +54,7 @@ namespace Bookstore.Identity.Controllers {
 			Console.WriteLine(request?.AcrValues.Print(", "));
 
 			// build a model so we know what to show on the login page
-			LoginViewModel vm = await this._account.BuildLoginViewModelAsync(returnUrl);
+			LoginModel vm = await this._account.BuildLoginViewModelAsync(returnUrl);
 
 			return View(vm);
 

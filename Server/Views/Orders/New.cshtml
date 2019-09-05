@@ -1,0 +1,29 @@
+﻿@using Bookstore.Models
+@model NewOrderModel
+
+@{
+	ViewData["Title"] = "Add Order";
+}
+<h2>@ViewData["Title"]</h2>
+
+@using (Html.BeginForm("New", "Orders", null, FormMethod.Post)) {
+	<div class="form-group">
+		@Html.LabelFor(model => model.CustomerId, new { htmlAttributes = new { @class = "control-label" } })
+		@Html.DropDownListFor(m => m.CustomerId, Model.Customers, new { @class = "form-control" })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(model => model.ProductId, new { htmlAttributes = new { @class = "control-label" } })
+		@Html.DropDownListFor(m => m.ProductId, Model.Products, new { @class = "form-control" })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(model => model.Amount, new { htmlAttributes = new { @class = "control-label" } })
+		@Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(model => model.Description, new { htmlAttributes = new { @class = "control-label" } })
+		@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+	</div>
+	<div class="form-group">
+		<input type="submit" value="Add" class="btn btn-default" />
+	</div>
+}

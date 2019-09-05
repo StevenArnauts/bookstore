@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Bookstore.Entities;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 namespace Bookstore.Controllers {
 
@@ -24,8 +25,8 @@ namespace Bookstore.Controllers {
 		}
 
 		[HttpPost]
-		public IActionResult New(CustomerSpecification spec) {
-			this._customers.Add(spec.Name);
+		public async Task<IActionResult> New(CustomerSpecification spec) {
+			await this._customers.AddAsync(spec.Name);
 			return this.RedirectToAction("List");
 		}
 

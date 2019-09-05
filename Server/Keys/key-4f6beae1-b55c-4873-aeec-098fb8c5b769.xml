@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<key id="4f6beae1-b55c-4873-aeec-098fb8c5b769" version="1">
+  <creationDate>2019-08-23T06:30:23.27263Z</creationDate>
+  <activationDate>2019-08-23T06:30:23.095559Z</activationDate>
+  <expirationDate>2019-11-21T06:30:23.095559Z</expirationDate>
+  <descriptor deserializerType="Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+    <descriptor>
+      <encryption algorithm="AES_256_CBC" />
+      <validation algorithm="HMACSHA256" />
+      <encryptedSecret decryptorType="Microsoft.AspNetCore.DataProtection.XmlEncryption.EncryptedXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" xmlns="http://schemas.asp.net/2015/03/dataProtection">
+        <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+          <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+          <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <EncryptedKey xmlns="http://www.w3.org/2001/04/xmlenc#">
+              <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5" />
+              <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                  <X509Certificate>MIIEKjCCAhKgAwIBAgIUdqypT7fGIQ2x1ZoxS1AnrnlMk8wwDQYJKoZIhvcNAQELBQAwZTELMAkGA1UEBhMCYmUxDzANBgNVBAoMBmRvY2NsZTELMAkGA1UECwwCY2ExHjAcBgkqhkiG9w0BCQEWD2NhQGJvb2tzdG9yZS5iZTEYMBYGA1UEAwwPY2EuYm9va3N0b3JlLmJlMB4XDTE5MDgxMzA5MzkyNVoXDTIwMTIyNTA5MzkyNVowFDESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt/gegEWgXfqLJlHdaFX1y7zEnZbSyXdje937a72n5eDBXKvp0AWAJtha4o2DErUgM5N0/kyhMbQPs8me5Y/EcZKB4Hub9TFhkecjykK74kHMcG+8fgTCXjDFLEd2jXQGVBagfrO/vY8GSATw961PsiUSYNtFXii2h8vrFdnyz1DgltTdQRH/CefTY9eGlzlvKo+SJkU7c0CRSH6rrywH+tZbUIwzZh6IJUZ5qJixkbCJrvXqyOeuvOFBvMwzK3oMuABsEIffZKyNpau28mDK1qPu3p9nO0i15rn/TVPCxNOaHXYFmAi8kdHwV4H08AdKziImybO1cqYZtPiFshFCkQIDAQABoyMwITAfBgNVHREEGDAWgglsb2NhbGhvc3SCCTEyNy4wLjAuMTANBgkqhkiG9w0BAQsFAAOCAgEADfeG7bhlBICTaCzt7erM69nvK1QIVHCYgM1q+QO08NCSyoqM3fDvzbRSGXsHkkNQgqiC2psvpt46pTkNsCUsKSWt4JvFXQjAhl+6YR8kvcMiQCIx6fbwjAnUqxKjugNt4gDeSZb2vlZLYAM967NdyEPmW7eZfMT6l/nh3QMS/1MlDxkgO6DU0HrqKIGlE1HtXx6hRT9TbRjxZJfEougoq6Fcvmdgl2+pYseH/WzGvP8mA3On3KHwqgtB6HqqDhwOb0/DU+2nkHBCjAPOim6qTGpkpbl4LFStHUHXGgqwJwLjToAlUYPVXqpkA71SbvTCy71nKudytM95tGK35wAbqgQfVPQDOyuPadtnTCNBO9DEaK68028Ex74hfEq59W3DxmmNYmf4uTHUaix0nvIdlkpoKeXokcFzKf3m0S7TJAN8cHF7KoyBQiY5Gv3dvsRweVBbOGQ/uKUdHONWMrn6yycOIYV3d78w5LZxt5xabSR/VRk3/DEjgheqVkOWh+msNRrYYOhtYmxCI4P9WuRuZDjs1hwZ/VyZY1G1e9dsiTTFtd+Dg+hwgbxats1TrdGeE3XlC/GxUeorCIdgLom5QzZIHMuSpNTyKDuhLI6vjG+HQfLilaywrDgFEkEQ2XDnsLwXzfxNY+5MqtOUJC/YDehZb75k2bhFCVpUy/hQYBc=</X509Certificate>
+                </X509Data>
+              </KeyInfo>
+              <CipherData>
+                <CipherValue>dvTO+UVz6W4JV7MfD5pt56ecoyHBtRg7zAFrQ7CWVZVXw2WlfXIQz1Ye6r86U9JvGUHy+XPxLaR8heOCRk5TLsBgnL0JftpOJGmQOU8Zxwmp9zT+qscm8/Rb3zsuL6KeoStjk0853v0mMTcnryHJluncutjN11LZ8bs7HHMJDeCmypUlLowyPvc+K4haCfHHj+xiuEx31HO9qUFqAcK5pRFW0T2efMtC2N/al8CP9YdolPX+fzzaKW5EekmtBsuuKbFg/N7895OCYNskfizK5fr68lVTF4Epp6xDyv9DxpdRysBqG7Oxx3dnx97FEuv++Nb+svyMn3pZgsVsu+izIA==</CipherValue>
+              </CipherData>
+            </EncryptedKey>
+          </KeyInfo>
+          <CipherData>
+            <CipherValue>AOUfIAPlJdpyKPBfmkBnwR/LBOISXH+ZVdb7UpMMttvDssug89tHGL8NcDjwc3R13fYXrbbvHrOXJXNxM6y1Q3FU3lHWfnH5/x3iTCUHNFlJKmvxD8qmcsMJ98A4z0hOl0SQsO/7x3vNaJCUI6fv4cBPdEhLXOAnhmGBearxzX3c6ktmNam3ioeul9GSqAZ7hyFlg6r1pQ8ctJbvPsXESb00Lsdcz5YiSd3l9yFR4cdAjmvpdtnBo9/QPd9fUliwWhZfAY6P6euhO4nmWydILCvWIycAJjfsSsUDTFedS8BFBeL9qr5lw/+MxK1fSKKWlTF/y0tapvWoGa4B738rMB5FgjVWwcB0hbV+ee8lL0mhMJjnXA3+q4FBCjYABefZ9nF0Vojk/3JUwq8GiMwwaA==</CipherValue>
+          </CipherData>
+        </EncryptedData>
+      </encryptedSecret>
+    </descriptor>
+  </descriptor>
+</key>

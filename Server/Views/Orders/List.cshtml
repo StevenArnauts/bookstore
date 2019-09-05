@@ -1,0 +1,34 @@
+﻿@using Bookstore.Controllers
+@model IEnumerable<OrderRepresentation>
+
+@{
+	ViewData["Title"] = "Orders";
+}
+<h2>@ViewData["Title"]</h2>
+
+<h3>Orders</h3>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Description</th>
+			<th>Date</th>
+			<th>Amount</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var order in Model) {
+			<tr>
+				@{
+					IDictionary<string, string> parms = new Dictionary<string, string> { { "id", order.Id } };
+				}
+				<td><a asp-action="Detail" asp-all-route-data="@parms">@order.Id</a></td>
+				<td>@order.Description</td>
+				<td>@order.Date.ToString("dd/MM/yyyy")</td>
+				<td>@order.Amount</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<a class="btn btn-default" asp-action="New" asp-controller="Orders">New</a>

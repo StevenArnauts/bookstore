@@ -1,0 +1,17 @@
+﻿@using Bookstore.Entities
+@model Product
+
+@{
+	ViewData["Title"] = Model.Name;
+}
+<h2>@ViewData["Title"]</h2>
+
+@{ 
+	IDictionary<string, string> parms = new Dictionary<string, string> {
+		{ "id", Model.Id }
+	};
+}
+
+<form asp-controller="Products" asp-action="Remove" asp-all-route-data="@parms">
+	<button class="btn btn-danger" type="submit">Delete</button>
+</form>

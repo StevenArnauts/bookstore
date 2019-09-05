@@ -1,5 +1,13 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
-for details on configuring this project to bundle and minify static web assets. */
+﻿
+@font-face {
+	font-family: 'Quicksand';
+	font-style: normal;
+	font-weight: 400;
+	src: 
+		local(''), 
+		url('../fonts/quicksand-v13-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 body {
 	padding-top: 50px;
 	padding-bottom: 20px;
@@ -31,11 +39,14 @@ h2 {
 	color: lightgray;
 }
 
+.btn {
+	padding: 8px 30px;
+	width: 120px;
+}
+
 .btn-default, .btn-default:hover, .btn-default:focus {
 	background-color: rgb(14, 172, 189);
 	border-color: rgb(14, 172, 189);
-	padding: 8px 30px;
-	width: 120px;
 	color: white;
 }
 

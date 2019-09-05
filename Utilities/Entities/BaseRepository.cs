@@ -23,6 +23,10 @@ namespace Utilities.Entities {
 
 		protected TContext Context => this._context;
 
+		protected string NewId() {
+			return Guid.NewGuid().ToString("N").ToUpper();
+		}
+
 		public void Add(TEntity entity) {
 			if (this.Set.Any(a => a.Id == entity.Id)) throw new Exception(typeof(TEntity).Name + " " + entity.Id + " already exists");
 			this.Set.Add(entity);

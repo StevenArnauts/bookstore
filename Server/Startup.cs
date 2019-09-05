@@ -14,6 +14,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
 using Utilities.Entities;
 using Utilities.Web;
+using System.IO;
+using Microsoft.AspNetCore.DataProtection;
+using Utilities;
 
 namespace Bookstore {
 
@@ -87,6 +90,11 @@ namespace Bookstore {
 			});
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+			services.AddDataProtection()
+				.PersistKeysToFileSystem(new DirectoryInfo(@"Keys"))
+				.ProtectKeysWithCertificate(Certificate.FromFile("local.pfx", "pencil"));
+
 			services.AddEntities(typeof(Customer).Assembly);
 
 		}	
