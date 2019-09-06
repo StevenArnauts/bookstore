@@ -55,7 +55,7 @@ Note: More fine-grained privileges may be appropriate, to look into.
 Note: Do the same for the 'identity' database (except creating the user)
 
 ### Server
-* Make sure you have .Net 2.2 SDK installed.
+* Make sure you have .Net 2.1 SDK installed.
 * Make sure you trust the bookstore ca !!!
 * Clone and open project folder in VS Code.
   ```
