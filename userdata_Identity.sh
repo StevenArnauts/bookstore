@@ -15,7 +15,7 @@ sudo apt-get update
 sudo apt-get install dotnet-sdk-2.2=2.2.203-1 -y
 
 # Install AWS CLI
-sudo snap install aws-cli --classic
+# sudo snap install aws-cli --classic
 
 
 # Clone git repo
@@ -28,10 +28,10 @@ sudo chown -R ubuntu /var/bookstore
 
 # Build and run some code (bookstore/Identity project, in this case)
 export DOTNET_CLI_HOME=/tmp
-export ASPNETCORE_ENVIRONMENT=dev
+# export ASPNETCORE_ENVIRONMENT=dev
 export ASPNETCORE_URLS=https://*:443
-export ConnectionStrings__identity="Host=bookstoredbfwi.c7xajvaahzcs.us-east-1.rds.amazonaws.com;Database=identity;Username=pencil42;Password=CHANGEME"
-export Web__Host="server-fwi.sbx.pencil42-apps.be"
+export ConnectionStrings__identity="Host=bookstoredb-fwi.c6ld8ymemfl6.eu-west-1.rds.amazonaws.com;Database=identity;Username=pencil42;Password=CHANGEME"
+export Web__Host="server-fw.sbx.pencil42-apps.be"
 
 # Log all env vars
 export
