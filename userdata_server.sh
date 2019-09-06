@@ -21,7 +21,7 @@ sudo snap install aws-cli --classic
 # Clone git repo
 # For now at least, clone the freetemp branch instead of master.
 cd /var
-sudo git clone --single-branch --branch freetemp https://github.com/StevenArnauts/bookstore.git
+sudo git clone --single-branch --branch freetempdnc21 https://github.com/StevenArnauts/bookstore.git
 
 # Change owner
 sudo chown -R ubuntu /var/bookstore
