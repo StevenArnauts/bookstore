@@ -21,7 +21,7 @@ sudo apt-get install dotnet-sdk-2.2=2.2.203-1 -y
 # Clone git repo
 # For now at least, clone the freetemp branch instead of master.
 cd /var
-sudo git clone --single-branch --branch freetempdnc21 https://github.com/StevenArnauts/bookstore.git
+sudo git clone --single-branch --branch freetempdnc https://github.com/StevenArnauts/bookstore.git
 
 # Change owner
 sudo chown -R ubuntu /var/bookstore
@@ -32,7 +32,7 @@ export HOME=/tmp #Seems needed for .Net Core 2.1 ?
 # export ASPNETCORE_ENVIRONMENT=dev
 export ASPNETCORE_URLS=https://*:443
 export ConnectionStrings__identity="Host=bookstoredb-fwi.c6ld8ymemfl6.eu-west-1.rds.amazonaws.com;Database=identity;Username=pencil42;Password=CHANGEME"
-export Web__Host="server-fw.sbx.pencil42-apps.be"
+export Web__Host="server-fw-sls.sbx.pencil42-apps.be"
 
 # Log all env vars
 export
