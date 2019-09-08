@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 echo "STARTING USERDATA!"
 echo "DON'T FORGET TO ADJUST THE VALUE OF CHANGEME AND POSSIBLY OTHER ENVIRONMENT VARIABLES"
 
@@ -14,8 +14,8 @@ sudo apt-get install apt-transport-https -y
 sudo apt-get update
 sudo apt-get install dotnet-sdk-2.1=2.1.302-1 -y
 
-# Install AWS CLI
-sudo snap install aws-cli --classic
+## Install AWS CLI
+#sudo snap install aws-cli --classic
 
 
 # Clone git repo
@@ -28,10 +28,11 @@ sudo chown -R ubuntu /var/bookstore
 
 # Build and run some code (bookstore/Server project, in this case)
 export DOTNET_CLI_HOME=/tmp
+export HOME=/tmp #Seems needed for .Net Core 2.1 ?
 export ASPNETCORE_ENVIRONMENT=dev
 export ASPNETCORE_URLS=https://*:443
-export ConnectionStrings__bookstore="Host=bookstoredbfwi.c7xajvaahzcs.us-east-1.rds.amazonaws.com;Database=bookstore;Username=pencil42;Password=CHANGEME"
-export Web__Authority="https://ids-fwi.sbx.pencil42-apps.be"
+export ConnectionStrings__bookstore="Host=bookstoredb-fwi.c6ld8ymemfl6.eu-west-1.rds.amazonaws.com;Database=bookstore;Username=pencil42;Password=CHANGEME"
+export Web__Authority="https://ids-fw.sbx.pencil42-apps.be"
 
 # Log all env vars
 export
@@ -40,3 +41,4 @@ cd bookstore/Server/
 dotnet restore
 dotnet build
 nohup dotnet run > dotnetrun_output.txt 2>&1 &
+echo $! > save_pid.txt # Alternatively: ps -ef | grep "command name"
